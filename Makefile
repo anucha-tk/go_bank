@@ -20,3 +20,5 @@ migrate-down:
 		-database "postgresql://$(DATABASE_USERNAME):$(DATABASE_PASSWORD)@$(DATABASE_HOST):5432/$(DATABASE_NAME)?sslmode=disable" \
 		--verbose down
 
+sqlc-gen:
+	sqlc generate
