@@ -8,9 +8,12 @@
 
 ## Tools
 
-- database
+- Database
   - PostgreSQL
   - Golang-migrate
-- testing
-  - testify
-  - faker
+- Testing
+  - Testify
+  - Faker
+- Infrastructer
+  - Docker
+  - Makefile
