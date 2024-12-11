@@ -22,3 +22,24 @@ migrate-down:
 
 sqlc-gen:
 	sqlc generate
+
+test-cover:
+	go test ./... -cover
+
+test-v:
+	go test ./... -v
+
+test-profile:
+	go test -coverprofile=coverage.out ./...
+
+test-cover-html:
+	go tool cover -html=coverage.out -o coverage.html
+
+open-cover:
+	#for macOS
+	open coverage.html
+
+open-cover-w:
+	$(MAKE) test-profile;
+	$(MAKE) test-cover-html;
+	$(MAKE) open-cover;
