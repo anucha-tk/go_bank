@@ -11,3 +11,6 @@
 - database
   - PostgreSQL
   - Golang-migrate
+- testing
+  - testify
+  - faker
