@@ -3,14 +3,16 @@
 <!--toc:start-->
 
 - [GOBANK APP](#gobank-app)
-  - [Tools](#tools)
+  - [Tools and Technicals](#tools-and-technicals)
   <!--toc:end-->
 
-## Tools
+## Tools and Technicals
 
 - Database
   - PostgreSQL
   - Golang-migrate
+  - Sqlc
+  - Transection
 - Testing
   - Testify
   - Faker
