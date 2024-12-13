@@ -1,5 +1,8 @@
-# load .env
-include .env
+# Ensure .env exists
+ifneq (,$(wildcard .env))
+    include .env
+    export
+endif
 
 start:
 	docker compose up -d
@@ -24,7 +27,7 @@ sqlc-gen:
 	sqlc generate
 
 test-cover:
-	go test ./... -cover
+	go test ./... -cover -v
 
 test-v:
 	go test ./... -v

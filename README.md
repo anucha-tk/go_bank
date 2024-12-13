@@ -4,6 +4,7 @@
 
 - [GOBANK APP](#gobank-app)
   - [Tools and Technicals](#tools-and-technicals)
+  - [Learn](#learn) - [Deadlock problem](#deadlock-problem)
   <!--toc:end-->
 
 ## Tools and Technicals
@@ -19,3 +20,10 @@
 - Infrastructer
   - Docker
   - Makefile
+  - Github Actions (CI)
+
+## Learn
+
+### Deadlock problem
+
+avoid deadlock with order see more `/db/sqlc/store.go`
