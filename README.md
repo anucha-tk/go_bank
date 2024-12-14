@@ -19,6 +19,7 @@
 - Testing
   - Testify
   - Faker
+  - Gomock(Unit-test)
 - Infrastructer
   - Viper(configuration)
   - Docker
@@ -30,3 +31,7 @@
 ### Deadlock problem
 
 avoid deadlock with order see more `/db/sqlc/store.go`
+
+### Unit testing
+
+unit testing with gomock separate testing from real database, see more `api/account_test.go`
