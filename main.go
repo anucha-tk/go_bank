@@ -4,11 +4,10 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
-	"os"
 
 	"github.com/anucha-tk/go_bank/api"
 	db "github.com/anucha-tk/go_bank/db/sqlc"
-	"github.com/joho/godotenv"
+	"github.com/anucha-tk/go_bank/util"
 	_ "github.com/lib/pq"
 )
 
@@ -18,15 +17,15 @@ const (
 )
 
 func main() {
-	err := godotenv.Load()
+	config, err := util.LoadConfig(".")
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
 
-	database_user := os.Getenv("DATABASE_USERNAME")
-	database_password := os.Getenv("DATABASE_PASSWORD")
-	database_name := os.Getenv("DATABASE_NAME")
-	database_host := os.Getenv("DATABASE_HOST")
+	database_user := config.DBUserName
+	database_password := config.DBPassword
+	database_name := config.DBName
+	database_host := config.DBHost
 
 	dbSource := fmt.Sprintf("postgresql://%s:%s@%s:5432/%s?sslmode=disable", database_user, database_password, database_host, database_name)
 

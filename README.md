@@ -9,6 +9,8 @@
 
 ## Tools and Technicals
 
+- HTTP Framework
+  - Gin
 - Database
   - PostgreSQL
   - Golang-migrate
@@ -18,6 +20,7 @@
   - Testify
   - Faker
 - Infrastructer
+  - Viper(configuration)
   - Docker
   - Makefile
   - Github Actions (CI)
