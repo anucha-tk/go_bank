@@ -46,3 +46,6 @@ open-cover-w:
 	$(MAKE) test-profile;
 	$(MAKE) test-cover-html;
 	$(MAKE) open-cover;
+
+server:
+	go run main.go
