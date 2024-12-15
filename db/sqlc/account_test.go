@@ -4,22 +4,23 @@ import (
 	"context"
 	"testing"
 
+	"github.com/anucha-tk/go_bank/util"
 	"github.com/go-faker/faker/v4"
 	"github.com/stretchr/testify/require"
 )
 
 func createFakerAccount(t *testing.T) Account {
-	type CreateFakerAccount struct {
-		Owner    string `faker:"first_name"`
-		Balance  int64  `faker:"boundary_start=31, boundary_end=88"`
-		Currency string `faker:"oneof:USD,EUR,CAD"`
-	}
+	user := createFakerUser(t)
 
-	var params CreateFakerAccount
+	var params util.CreateFakerAccount
 	err := faker.FakeData(&params)
 	require.NoError(t, err)
 
-	arg := CreateAccountParams(params)
+	arg := CreateAccountParams{
+		Owner:    user.Username,
+		Balance:  params.Balance,
+		Currency: params.Currency,
+	}
 
 	account, err := testQueries.CreateAccount(context.Background(), arg)
 	require.NoError(t, err)
@@ -53,12 +54,7 @@ func TestGetAccount(t *testing.T) {
 func TestUpdateAccount(t *testing.T) {
 	account := createFakerAccount(t)
 
-	type UpdateFakerAccount struct {
-		ID      int64 `faker:"-"`
-		Balance int64 `faker:"boundary_start=500, boundary_end=999"`
-	}
-
-	params := UpdateFakerAccount{
+	params := util.UpdateFakerAccount{
 		ID: account.ID,
 	}
 

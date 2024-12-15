@@ -4,7 +4,7 @@
 
 - [GOBANK APP](#gobank-app)
   - [Tools and Technicals](#tools-and-technicals)
-  - [Learn](#learn) - [Deadlock problem](#deadlock-problem) - [Register custom validation params](#register-custom-validation-params) - [Unit testing](#unit-testing)
+  - [Learn](#learn) - [Deadlock problem](#deadlock-problem) - [Register custom validation params](#register-custom-validation-params) - [Unit testing](#unit-testing) - [Handle DB Errors](#handle-db-errors)
   <!--toc:end-->
 
 ## Tools and Technicals
@@ -42,3 +42,7 @@ and register at `/api/server.go`
 ### Unit testing
 
 unit testing with gomock separate testing from real database, see more `api/account_test.go`
+
+### Handle DB Errors
+
+> use err.(\*pq.Error) at `/api/account.go`
