@@ -17,11 +17,23 @@ migrate-up:
 		-database "postgresql://$(DATABASE_USERNAME):$(DATABASE_PASSWORD)@$(DATABASE_HOST):5432/$(DATABASE_NAME)?sslmode=disable" \
 		--verbose up
 
+migrate-up-1:
+	migrate \
+		-path db/migration \
+		-database "postgresql://$(DATABASE_USERNAME):$(DATABASE_PASSWORD)@$(DATABASE_HOST):5432/$(DATABASE_NAME)?sslmode=disable" \
+		--verbose up 1
+
 migrate-down:
 	migrate \
 		-path db/migration \
 		-database "postgresql://$(DATABASE_USERNAME):$(DATABASE_PASSWORD)@$(DATABASE_HOST):5432/$(DATABASE_NAME)?sslmode=disable" \
 		--verbose down
+
+migrate-down-1:
+	migrate \
+		-path db/migration \
+		-database "postgresql://$(DATABASE_USERNAME):$(DATABASE_PASSWORD)@$(DATABASE_HOST):5432/$(DATABASE_NAME)?sslmode=disable" \
+		--verbose down 1
 
 sqlc-gen:
 	sqlc generate
