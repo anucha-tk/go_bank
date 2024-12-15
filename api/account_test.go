@@ -95,7 +95,7 @@ func TestGetAccountAPI(t *testing.T) {
 func createFakerAccount() db.Account {
 	type CreateFakerAccount struct {
 		Owner    string `faker:"first_name"`
-		Currency string `faker:"oneof:USD,EUR,THB"`
+		Currency string `faker:"oneof:USD,EUR,CAD"`
 		ID       int64  `faker:"boundary_start=1, boundary_end=999"`
 		Balance  int64  `faker:"boundary_start=31, boundary_end=88"`
 	}

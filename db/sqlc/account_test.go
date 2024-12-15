@@ -12,7 +12,7 @@ func createFakerAccount(t *testing.T) Account {
 	type CreateFakerAccount struct {
 		Owner    string `faker:"first_name"`
 		Balance  int64  `faker:"boundary_start=31, boundary_end=88"`
-		Currency string `faker:"oneof:USD,EUR,THB"`
+		Currency string `faker:"oneof:USD,EUR,CAD"`
 	}
 
 	var params CreateFakerAccount
