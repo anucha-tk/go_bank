@@ -11,11 +11,23 @@ import (
 )
 
 func createFakerUser(t *testing.T) User {
-	var params util.CreateFakerUser
-	err := faker.FakeData(&params)
+	var p util.FakerPassword
+	err := faker.FakeData(&p)
 	require.NoError(t, err)
 
-	arg := CreateUserParams(params)
+	HashedPassword, err := util.HashPassword(p.Password)
+	require.NoError(t, err)
+
+	var params util.CreateFakerUser
+	err = faker.FakeData(&params)
+	require.NoError(t, err)
+
+	arg := CreateUserParams{
+		Username:       params.Username,
+		HashedPassword: HashedPassword,
+		FullName:       params.FullName,
+		Email:          params.Email,
+	}
 
 	user, err := testQueries.CreateUser(context.Background(), arg)
 	require.NoError(t, err)
