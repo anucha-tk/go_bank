@@ -17,5 +17,5 @@ type UpdateFakerAccount struct {
 }
 
 type FakerPassword struct {
-	Password string `faker:"password"`
+	Password string `faker:"cc_number"`
 }
