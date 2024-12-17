@@ -7,6 +7,7 @@ type CreateFakerUser struct {
 }
 
 type CreateFakerAccount struct {
+	ID       int64  `faker:"boundary_start=1, boundary_end=999"`
 	Currency string `faker:"oneof:USD,EUR,CAD"`
 	Balance  int64  `faker:"boundary_start=31, boundary_end=88"`
 }

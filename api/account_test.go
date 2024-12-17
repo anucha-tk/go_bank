@@ -13,13 +13,16 @@ import (
 
 	mockdb "github.com/anucha-tk/go_bank/db/mock"
 	db "github.com/anucha-tk/go_bank/db/sqlc"
+	"github.com/anucha-tk/go_bank/util"
+	"github.com/gin-gonic/gin"
 	"github.com/go-faker/faker/v4"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/mock/gomock"
 )
 
 func TestGetAccountAPI(t *testing.T) {
-	account := createFakerAccount()
+	user, _ := createfakerUser(t)
+	account := createFakerAccount(user.Username)
 
 	testCases := []struct {
 		buildStubs    func(store *mockdb.MockStore)
@@ -92,15 +95,70 @@ func TestGetAccountAPI(t *testing.T) {
 	}
 }
 
-func createFakerAccount() db.Account {
-	type CreateFakerAccount struct {
-		Owner    string `faker:"first_name"`
-		Currency string `faker:"oneof:USD,EUR,CAD"`
-		ID       int64  `faker:"boundary_start=1, boundary_end=999"`
-		Balance  int64  `faker:"boundary_start=31, boundary_end=88"`
+func TestCreateAccountAPI(t *testing.T) {
+	user, _ := createfakerUser(t)
+	account := createFakerAccount(user.Username)
+
+	testCases := []struct {
+		buildStubs    func(store *mockdb.MockStore)
+		checkResponse func(t *testing.T, recorder *httptest.ResponseRecorder)
+		body          gin.H
+		name          string
+	}{
+		{
+			name: "OK",
+			body: gin.H{
+				"owner":    account.Owner,
+				"currency": account.Currency,
+			},
+			buildStubs: func(store *mockdb.MockStore) {
+				arg := db.CreateAccountParams{
+					Owner:    account.Owner,
+					Currency: account.Currency,
+					Balance:  0,
+				}
+				store.EXPECT().
+					CreateAccount(gomock.Any(), gomock.Eq(arg)).
+					Times(1).
+					Return(account, nil)
+			},
+			checkResponse: func(t *testing.T, recorder *httptest.ResponseRecorder) {
+				require.Equal(t, http.StatusOK, recorder.Code)
+				requireBodyMatchAccount(t, recorder.Body, account)
+			},
+		},
+		// TODO: make more unit test
 	}
 
-	var params CreateFakerAccount
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			ctrl := gomock.NewController(t)
+			defer ctrl.Finish()
+
+			store := mockdb.NewMockStore(ctrl)
+			tc.buildStubs(store)
+
+			server := NewServer(store)
+			recorder := httptest.NewRecorder()
+
+			data, err := json.Marshal(tc.body)
+			require.NoError(t, err)
+
+			url := "/accounts"
+			request, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(data))
+			require.NoError(t, err)
+
+			server.router.ServeHTTP(recorder, request)
+
+			tc.checkResponse(t, recorder)
+		})
+	}
+}
+
+// TODO: TestListAccountsAPI
+
+func createFakerAccount(owner string) db.Account {
+	var params util.CreateFakerAccount
 	err := faker.FakeData(&params)
 	if err != nil {
 		log.Fatal("err:", err)
@@ -108,7 +166,7 @@ func createFakerAccount() db.Account {
 
 	return db.Account{
 		ID:       params.ID,
-		Owner:    params.Owner,
+		Owner:    owner,
 		Balance:  params.Balance,
 		Currency: params.Currency,
 	}
