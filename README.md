@@ -25,6 +25,8 @@
   - Docker
   - Makefile
   - Github Actions (CI)
+- ETC
+  - JWT and Paseto
 
 ## Learn
 
@@ -46,3 +48,7 @@ unit testing with gomock separate testing from real database, see more `api/acco
 ### Handle DB Errors
 
 > use err.(\*pq.Error) at `/api/account.go`
+
+### JWT vs Paseto Token
+
+> learn build jwt token and paseto (modern) token at `/token`
