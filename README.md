@@ -4,7 +4,13 @@
 
 - [GOBANK APP](#gobank-app)
   - [Tools and Technicals](#tools-and-technicals)
-  - [Learn](#learn) - [Deadlock problem](#deadlock-problem) - [Register custom validation params](#register-custom-validation-params) - [Unit testing](#unit-testing) - [Handle DB Errors](#handle-db-errors)
+  - [Learn](#learn)
+    - [Deadlock problem](#deadlock-problem)
+    - [Register custom validation params](#register-custom-validation-params)
+    - [Unit testing](#unit-testing)
+    - [Handle DB Errors](#handle-db-errors)
+    - [JWT vs Paseto Token](#jwt-vs-paseto-token)
+  - [Resource](#resource)
   <!--toc:end-->
 
 ## Tools and Technicals
@@ -52,3 +58,7 @@ unit testing with gomock separate testing from real database, see more `api/acco
 ### JWT vs Paseto Token
 
 > learn build jwt token and paseto (modern) token at `/token`
+
+## Resource
+
+[backend-master-class-golang-postgresql-kubernetes](https://www.udemy.com/course/backend-master-class-golang-postgresql-kubernetes/)

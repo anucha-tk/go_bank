@@ -10,7 +10,7 @@ import (
 
 type PasetoMaker struct {
 	paseto       *paseto.V2
-	synmetricKey []byte
+	symmetricKey []byte
 }
 
 func NewPasetoMaker(synmetricKey string) (Maker, error) {
@@ -19,7 +19,7 @@ func NewPasetoMaker(synmetricKey string) (Maker, error) {
 	}
 	maker := &PasetoMaker{
 		paseto:       paseto.NewV2(),
-		synmetricKey: []byte(synmetricKey),
+		symmetricKey: []byte(synmetricKey),
 	}
 	return maker, nil
 }
@@ -29,13 +29,13 @@ func (maker *PasetoMaker) CreateToken(username string, duration time.Duration) (
 	if err != nil {
 		return "", nil
 	}
-	return maker.paseto.Encrypt(maker.synmetricKey, payload, nil)
+	return maker.paseto.Encrypt(maker.symmetricKey, payload, nil)
 }
 
 func (maker *PasetoMaker) VerifyToken(token string) (*Payload, error) {
 	payload := &Payload{}
 
-	err := maker.paseto.Decrypt(token, maker.synmetricKey, payload, nil)
+	err := maker.paseto.Decrypt(token, maker.symmetricKey, payload, nil)
 	if err != nil {
 		return nil, ErrInvalidToken
 	}
