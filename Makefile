@@ -44,6 +44,9 @@ test-cover:
 test-v:
 	go test ./... -v
 
+test-v-c:
+	go test ./... -v -count=1
+
 test-profile:
 	go test -coverprofile=coverage.out ./...
 

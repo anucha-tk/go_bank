@@ -33,6 +33,7 @@
   - Github Actions (CI)
 - ETC
   - JWT and Paseto
+  - Auth Middleware
 
 ## Learn
 
