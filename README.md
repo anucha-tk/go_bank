@@ -58,7 +58,11 @@ unit testing with gomock separate testing from real database, see more `api/acco
 
 ### JWT vs Paseto Token
 
-> learn build jwt token and paseto (modern) token at `/token`
+learn build jwt token and paseto (modern) token at `/token`
+
+### Dockerfile
+
+learn build stage for reduce file size see more `Dockerfile`
 
 ## Resource
 
