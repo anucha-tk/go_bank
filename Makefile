@@ -6,6 +6,8 @@ endif
 
 start:
 	docker compose up -d
+restart:
+	docker compose restart
 stop:
 	docker compose stop
 down:
