@@ -13,7 +13,9 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
   server:
-    image: go_bank:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: go_bank
     ports:
       - "8080:8080"
@@ -21,5 +23,7 @@ services:
       - .env
     depends_on:
       - postgres
+    entrypoint: ["/app/wait-for.sh", "postgres:5432", "--", "/app/start.sh"]
+    command: ["/app/main"]
 volumes:
   postgres_data:

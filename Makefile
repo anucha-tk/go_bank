@@ -6,6 +6,8 @@ endif
 
 start:
 	docker compose up -d
+start-build:
+	docker compose up --build -d
 restart:
 	docker compose restart
 stop:

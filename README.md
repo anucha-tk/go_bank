@@ -19,11 +19,11 @@
   - Gin
 - Database
   - PostgreSQL
-  - Golang-migrate
+  - [migrate](https://github.com/golang-migrate/migrate)
   - Sqlc
   - Transection
 - Testing
-  - Testify
+  - [Testify](https://github.com/stretchr/testify)
   - Faker
   - Gomock(Unit-test)
 - Infrastructer
@@ -32,7 +32,7 @@
   - Makefile
   - Github Actions (CI)
 - ETC
-  - JWT and Paseto
+  - JWT and [Paseto](https://github.com/paragonie/paseto)
   - Auth Middleware
 
 ## Learn
@@ -62,7 +62,7 @@ learn build jwt token and paseto (modern) token at `/token`
 
 ### Dockerfile
 
-learn build stage for reduce file size see more `Dockerfile`
+learn build stage for reduce file size see more `Dockerfile` and pre-load [migrate](https://github.com/golang-migrate/migrate) and ensure run `start.sh` after postgres container is ready with `wait-for.sh`
 
 ## Resource
 
