@@ -37,6 +37,14 @@
 
 ## Learn
 
+## Migration
+
+- Create a new db migrate
+
+```bash
+migrate create -ext sql -dir db/migration -seq <migration_name>
+```
+
 ### Deadlock problem
 
 avoid deadlock with order see more `/db/sqlc/store.go`

@@ -6,6 +6,8 @@ endif
 
 start:
 	docker compose up -d
+start-dev:
+	docker compose up -d postgres
 start-build:
 	docker compose up --build -d
 restart:
@@ -14,6 +16,8 @@ stop:
 	docker compose stop
 down:
 	docker compose down
+logs:
+	docker compose logs
 
 migrate-up:
 	migrate \
