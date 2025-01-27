@@ -76,3 +76,13 @@ server:
 mock:
 	mockgen -package mockdb -destination db/mock/store.go github.com/anucha-tk/go_bank/db/sqlc Store
 
+gen-proto:
+	rm -f pb/*.go
+	rm -f doc/swagger/*.swagger.json
+	protoc \
+	--proto_path=proto \
+	--go_out=pb \
+	--go_opt=paths=source_relative \
+	--go-grpc_out=pb \
+	--go-grpc_opt=paths=source_relative \
+	proto/*.proto
