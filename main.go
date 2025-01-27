@@ -31,7 +31,7 @@ func main() {
 
 	conn, err := sql.Open(dbDriver, dbSource)
 	if err != nil {
-		log.Fatal("connot connect to db:", err)
+		log.Fatal("cannot connect to db:", err)
 	}
 
 	if err := conn.Ping(); err != nil {

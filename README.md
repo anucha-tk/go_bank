@@ -3,17 +3,18 @@
 <!--toc:start-->
 
 - [GOBANK APP](#gobank-app)
-  - [Tools and Technicals](#tools-and-technicals)
+  - [Tools and Technical](#tools-and-technical)
   - [Learn](#learn)
+  - [Migration](#migration)
     - [Deadlock problem](#deadlock-problem)
     - [Register custom validation params](#register-custom-validation-params)
     - [Unit testing](#unit-testing)
     - [Handle DB Errors](#handle-db-errors)
     - [JWT vs Paseto Token](#jwt-vs-paseto-token)
+    - [Dockerfile](#dockerfile)
   - [Resource](#resource)
-  <!--toc:end-->
 
-## Tools and Technicals
+## Tools and Technical
 
 - HTTP Framework
   - Gin
@@ -21,18 +22,19 @@
   - PostgreSQL
   - [migrate](https://github.com/golang-migrate/migrate)
   - Sqlc
-  - Transection
+  - Transaction
 - Testing
   - [Testify](https://github.com/stretchr/testify)
   - Faker
   - Gomock(Unit-test)
-- Infrastructer
+- Infrastructure
   - Viper(configuration)
   - Docker
   - Makefile
   - Github Actions (CI)
 - ETC
   - JWT and [Paseto](https://github.com/paragonie/paseto)
+    - Authentication(Access Token and Refresh Token)
   - Auth Middleware
 
 ## Learn
